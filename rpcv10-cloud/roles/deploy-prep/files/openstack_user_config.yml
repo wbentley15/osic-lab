@@ -1,17 +1,17 @@
 ---
 cidr_networks:
-  container: 172.23.8.0/22
-  tunnel: 172.23.100.0/22
-  storage: 172.23.104.0/22
+  container: 172.22.20.0/22
+  tunnel: 172.22.28.0/22
+  storage: 172.22.24.0/22
 
 used_ips:
-  - 172.23.8.1,172.23.8.32
-  - 172.23.100.1,172.23.100.32
-  - 172.23.104.1,172.23.104.32
+  - 172.22.20.1,172.22.20.130
+  - 172.22.28.1,172.22.28.130
+  - 172.22.24.1,172.22.24.130
 
 global_overrides:
-  internal_lb_vip_address: 172.23.8.30
-  external_lb_vip_address: 172.23.8.30
+  internal_lb_vip_address: 172.22.20.115
+  external_lb_vip_address: 172.22.20.115
   tunnel_bridge: "br-vxlan"
   management_bridge: "br-mgmt"
   provider_networks:
@@ -61,90 +61,101 @@ global_overrides:
 # Shared infrastructure parts
 shared-infra_hosts:
   infra1:
-    ip: 172.23.8.21
+    ip: 172.22.20.116
   infra2:
-    ip: 172.23.8.22
+    ip: 172.22.20.117
   infra3:
-    ip: 172.23.8.23
+    ip: 172.22.20.118
 
 # OpenStack Compute infrastructure parts
 os-infra_hosts:
   infra1:
-    ip: 172.23.8.21
+    ip: 172.22.20.116
   infra2:
-    ip: 172.23.8.22
+    ip: 172.22.20.117
   infra3:
-    ip: 172.23.8.23
+    ip: 172.22.20.118
 
 # OpenStack Compute infrastructure parts
 storage-infra_hosts:
   infra1:
-    ip: 172.23.8.21
+    ip: 172.22.20.116
   infra2:
-    ip: 172.23.8.22
+    ip: 172.22.20.117
   infra3:
-    ip: 172.23.8.23
+    ip: 172.22.20.118
 
 repo-infra_hosts:
   infra1:
-    ip: 172.23.8.21
+    ip: 172.22.20.116
 
 # Keystone Identity infrastructure parts
 identity_hosts:
   infra1:
-    ip: 172.23.8.21
+    ip: 172.22.20.116
   infra2:
-    ip: 172.23.8.22
+    ip: 172.22.20.117
   infra3:
-    ip: 172.23.8.23
+    ip: 172.22.20.118
 
 # User defined Compute Hosts, this should be a required group
 compute_hosts:
   compute1:
-    ip: 172.23.8.24
+    ip: 172.22.20.119
   compute2:
-    ip: 172.23.8.25
+    ip: 172.22.20.120
   compute3:
-    ip: 172.23.8.26
+    ip: 172.22.20.121
   compute4:
-    ip: 172.23.8.27
+    ip: 172.22.20.122
   compute5:
-    ip: 172.23.8.28
+    ip: 172.22.20.123
   compute6:
-    ip: 172.23.8.29
+    ip: 172.22.20.124
     
 # User defined Storage Hosts, this should be a required group
-#storage_hosts:
-#  allinone:
-#    ip: 172.{{ CDIR }}.238.2
-#    container_vars:
-#      cinder_storage_availability_zone: cinderAZ_1
-#      cinder_default_availability_zone: cinderAZ_1
-#      cinder_backends:
-#        limit_container_types: cinder_volume
-#        lvm:
-#          volume_group: cinder-volumes
-#          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
-#          volume_backend_name: LVM_iSCSI
+storage_hosts:
+  cinder1:
+    ip: 172.22.20.125
+    container_vars:
+      cinder_storage_availability_zone: cinderAZ_1
+      cinder_default_availability_zone: cinderAZ_1
+      cinder_backends:
+        limit_container_types: cinder_volume
+        lvm:
+          volume_group: cinder-volumes
+          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
+          volume_backend_name: LVM_iSCSI
+  cinder2:
+    ip: 172.22.20.126
+    container_vars:
+      cinder_storage_availability_zone: cinderAZ_1
+      cinder_default_availability_zone: cinderAZ_1
+      cinder_backends:
+        limit_container_types: cinder_volume
+        lvm:
+          volume_group: cinder-volumes
+          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
+          volume_backend_name: LVM_iSCSI
 
 # User defined Logging Hosts, this should be a required group
 log_hosts:
   infra3:
-    ip: 172.23.8.23
+    ip: 172.22.20.118
 
 # User defined Networking Hosts, this should be a required group
 network_hosts:
   infra1:
-    ip: 172.23.8.21
+    ip: 172.22.20.116
   infra2:
-    ip: 172.23.8.22
+    ip: 172.22.20.117
   infra3:
-    ip: 172.23.8.23
+    ip: 172.22.20.118
 
 haproxy_hosts:
   infra1:
-    ip: 172.23.8.21
+    ip: 172.22.20.116
   infra2:
-    ip: 172.23.8.22
+    ip: 172.22.20.117
   infra3:
-    ip: 172.23.8.23
+    ip: 172.22.20.118
