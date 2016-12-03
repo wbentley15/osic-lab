@@ -2,22 +2,19 @@
 # This playbook deploys base environment for Openstack Icehouse. 
 
 - hosts: infra_nodes 
-  user: root
   remote_user: root
-  sudo: yes
+  become: true
   roles:
     - access-hack
     
 - hosts: compute_nodes 
-  user: root
   remote_user: root
-  sudo: yes
+  become: true
   roles:
     - access-hack
 
 - hosts: cinder_nodes 
-  user: root
   remote_user: root
-  sudo: yes
+  become: true
   roles:
     - access-hack

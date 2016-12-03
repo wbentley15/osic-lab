@@ -1,5 +1,46 @@
 ---
 
+- name: Install additional packages
+  apt: name={{item}} state=present
+  with_items:
+   - git
+   - build-essential
+   - python-dev
+   - bridge-utils
+   - vim
+   - fping
+   - mongodb-server
+   - mongodb-clients
+   - python-pymongo
+   
+- name: Clone RPC repository
+  command: chdir=/opt git clone -b 14.0.1 https://github.com/openstack/openstack-ansible.git
+  ignore_errors: yes
+
+- name: Download pip repo
+  shell: chdir=/opt/openstack-ansible ./scripts/bootstrap-ansible.sh
+    
+- name: Prep RPC deploy
+  command: mkdir /etc/openstack_deploy
+  
+- name: Move Ansible playbooks
+  command: cp -R /opt/openstack-ansible/etc/openstack_deploy /etc
+  
+- name: Copy RPC Ansible system variable file
+  copy: src=user_secrets.yml dest=/etc/openstack_deploy mode=0644
+  
+- name: Copy RPC Ansible config file
+  copy: src=openstack_user_config.yml dest=/etc/openstack_deploy mode=0644
+
+- name: Copy RPC Ansible variable file
+  copy: src=user_variables.yml dest=/etc/openstack_deploy mode=0644
+
+- name: Copy RPC Ansible aodh config file
+  copy: src=aodh.yml dest=/etc/openstack_deploy/conf.d mode=0644
+  
+- name: Copy RPC Ansible ceilometer config file
+  copy: src=ceilometer.yml dest=/etc/openstack_deploy/conf.d mode=0644
+
 - name: Copy RPC Ansible magnum config file
   copy: src=magnum.yml dest=/etc/openstack_deploy/conf.d mode=0644
 
