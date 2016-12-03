@@ -1,0 +1,23 @@
+---
+# This playbook deploys base environment for Openstack Icehouse. 
+
+- hosts: infra_nodes 
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - custom-osic-kernel
+    
+- hosts: compute_nodes 
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - custom-osic-kernel
+    
+- hosts: cinder_nodes 
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - custom-osic-kernel

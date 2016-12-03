@@ -1,0 +1,11 @@
+---
+# This playbook deploys base environment for Openstack Kilo. 
+
+- hosts: cinder_nodes
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - ntp-standalone
+    - hosts-prep
+    - cinder-volume

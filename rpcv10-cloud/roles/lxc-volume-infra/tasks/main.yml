@@ -1,0 +1,14 @@
+---
+
+- name: Unmount nova partition
+  command: umount /var/lib/nova
+  ignore_errors: True
+  
+- name: Remove nova directory
+  shell: rm -rf /var/lib/nova
+  
+- name: Remove nova logical volume
+  command: lvremove -f /dev/mapper/lxc-nova00
+  
+- name: Remove reference from fstab file
+  shell: chdir=/bin sed -i '/lxc-nova00/d' /etc/fstab

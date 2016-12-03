@@ -1,0 +1,13 @@
+---
+
+- name: Copy interfaces template file
+  template: src=os-interfaces.cfg dest=/usr/share
+  
+- name: Insert network config into target interface
+  shell: chdir=/usr/share cp os-interfaces.cfg /etc/network/interfaces.d
+
+- name: Into source into interfaces file
+  shell: chdir=/bin sed -i '$ a source /etc/network/interfaces.d/*.cfg' /etc/network/interfaces
+
+- name: Restart target host
+  command: shutdown -r now

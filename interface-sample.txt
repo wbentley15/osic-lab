@@ -1,0 +1,136 @@
+MANAGEMENT  172.22.8.0/22
+STORAGE     172.22.100.0/22
+OVERLAY     172.22.104.0/22
+FLAT        172.22.108.0/22
+
+
+
+
+(rally)root@cloud8-deploy:~# ssh infra01
+Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 4.4.0-34-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+New release '16.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+Last login: Wed Aug 17 10:38:23 2016 from 172.22.8.21
+
+root@infra01:~# cat /etc/network/interfaces
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto p1p1
+iface p1p1 inet manual
+
+# Container Bridge
+auto br-pxe
+iface br-pxe inet static
+address 172.22.0.23
+netmask 255.255.252.0
+dns-nameservers 8.8.8.8 8.8.4.4
+bridge_ports p1p1
+bridge_stp off
+bridge_waitport 0
+bridge_fd 0
+
+source /etc/network/interfaces.d/*.cfg
+
+root@infra01:~# cat /etc/network/interfaces.d/
+lxc-net-bridge.cfg      os-refimpl-devices.cfg
+root@infra01:~# cat /etc/network/interfaces.d/os-refimpl-devices.cfg
+auto p4p1
+iface p4p1 inet manual
+
+auto p1p2
+iface p1p2 inet manual
+    bond-master bond0
+    bond-primary p1p2
+
+auto p4p2
+iface p4p2 inet manual
+    bond-master bond0
+
+auto bond0
+iface bond0 inet manual
+    bond-slaves none
+    bond-mode active-backup
+    bond-miimon 100
+    bond-downdelay 200
+    bond-updelay 200
+
+auto p4p1.832
+iface p4p1.832 inet manual
+    vlan-raw-device p4p1
+
+iface bond0.802 inet manual
+    vlan-raw-device bond0
+
+iface bond0.830 inet manual
+    vlan-raw-device bond0
+
+iface bond0.831 inet manual
+    vlan-raw-device bond0
+
+iface bond0.850 inet6 manual
+    vlan-raw-device bond0
+
+auto br-flat
+iface br-flat inet static
+    bridge_stp off
+    bridge_waitport 10
+    bridge_fd 0
+    bridge_ports p4p1.832
+    address 172.22.108.23
+    netmask 255.255.252.0
+    offload-sg off
+
+auto br-mgmt
+iface br-mgmt inet static
+    bridge_stp off
+    bridge_waitport 10
+    bridge_fd 0
+    bridge_ports bond0.802
+    address 172.22.8.23
+    netmask 255.255.252.0
+    gateway 172.22.8.1
+    offload-sg off
+
+auto br-storage
+iface br-storage inet static
+    bridge_stp off
+    bridge_waitport 10
+    bridge_fd 0
+    bridge_ports bond0.830
+    address 172.22.100.23
+    netmask 255.255.252.0
+    offload-sg off
+
+auto br-vxlan
+iface br-vxlan inet static
+    bridge_stp off
+    bridge_waitport 10
+    bridge_fd 0
+    bridge_ports bond0.831
+    address 172.22.104.23
+    netmask 255.255.252.0
+    offload-sg off
+
+auto br-vlan
+iface br-vlan inet manual
+    bridge_stp off
+    bridge_waitport 10
+    bridge_fd 0
+    bridge_ports bond0
+    offload-sg off
+
+auto br-ipvsix
+iface br-ipvsix inet6 static
+    bridge_stp off
+    bridge_waitport 10
+    bridge_fd 0
+    bridge_ports bond0.850
+    address 2001:4800:1ae1:17::23
+    netmask 64
+    offload-sg off
+root@infra01:~#

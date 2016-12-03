@@ -1,0 +1,7 @@
+---
+
+- name: OS update
+  command: apt-get update
+  
+- name: Update OS to custom kernel for Intel NIC
+  command: apt-get install -y linux-generic-lts-xenial
