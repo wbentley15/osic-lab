@@ -21,7 +21,6 @@
    - vlan
    - vim
    - ifenslave-2.6
-   - moreutils
   
 - name: Enable interface bonding
   copy: src=modules dest=/etc
