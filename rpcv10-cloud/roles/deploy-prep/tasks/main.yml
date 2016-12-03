@@ -14,7 +14,7 @@
    - python-pymongo
    
 - name: Clone RPC repository
-  command: chdir=/opt git clone -b 14.0.1 https://github.com/openstack/openstack-ansible.git
+  command: chdir=/opt git clone -b 14.0.2 https://github.com/openstack/openstack-ansible.git
   ignore_errors: yes
 
 - name: Download pip repo
@@ -64,12 +64,6 @@
 
 - name: Insert additional entries into hosts file
   shell: chdir=/opt cat /opt/hosts >> /etc/hosts
-
-- name: Enable logging for Ansible
-  shell: chdir=/opt/openstack-ansible/playbooks sed -i '1 a log_path=/var/log/ansible/ansible.log' ansible.cfg
-  
-- name: Create Ansible log directory
-  command: mkdir /var/log/ansible
 
 - name: Restart MongoDB service
   command: service mongodb restart
