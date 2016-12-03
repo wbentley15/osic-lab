@@ -1,0 +1,5 @@
+magnum-infra_hosts:
+  infra1:
+    ip: 172.22.20.117
+  infra2:
+    ip: 172.22.20.118
