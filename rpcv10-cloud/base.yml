@@ -5,5 +5,5 @@
   remote_user: root
   become: true
   roles:
-    - ntp-standalone
     - hosts-prep
+    - ntp-standalone
