@@ -1,7 +1,0 @@
-metering-alarm_hosts:
-  infra1:
-    ip: 172.22.164.30
-  infra2:
-    ip: 172.22.164.29
-  infra3:
-    ip: 172.22.164.28
