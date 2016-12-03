@@ -2,9 +2,8 @@
 # This playbook deploys base environment for Openstack Kilo. 
 
 - hosts: control1
-  user: root
   remote_user: root
-  sudo: yes
+  become: true
   roles:
     - deploy-prep
     
