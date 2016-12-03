@@ -13,6 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+pip_install_options: "--isolated"
+
+## Debug and Verbose options.
+debug: false
+
 neutron_plugin_base:
   - neutron.services.l3_router.l3_router_plugin.L3RouterPlugin
   - neutron.services.metering.metering_plugin.MeteringPlugin
@@ -202,3 +207,4 @@ keepalived_ping_address: "172.22.20.117"
 # variable to 'true'.
 # Docs: http://docs.openstack.org/developer/openstack-ansible-security/
 # apply_security_hardening: true
+apply_security_hardening: false
