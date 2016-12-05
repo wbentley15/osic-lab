@@ -62,22 +62,16 @@ global_overrides:
 shared-infra_hosts:
   infra1:
     ip: 172.22.20.117
-  infra2:
-    ip: 172.22.20.118
 
 # OpenStack Compute infrastructure parts
 os-infra_hosts:
   infra1:
     ip: 172.22.20.117
-  infra2:
-    ip: 172.22.20.118
 
 # OpenStack Compute infrastructure parts
 storage-infra_hosts:
   infra1:
     ip: 172.22.20.117
-  infra2:
-    ip: 172.22.20.118
 
 repo-infra_hosts:
   infra1:
@@ -87,8 +81,6 @@ repo-infra_hosts:
 identity_hosts:
   infra1:
     ip: 172.22.20.117
-  infra2:
-    ip: 172.22.20.118
 
 # User defined Compute Hosts, this should be a required group
 compute_hosts:
@@ -115,18 +107,14 @@ storage_hosts:
 
 # User defined Logging Hosts, this should be a required group
 log_hosts:
-  infra2:
-    ip: 172.22.20.118
+  infra1:
+    ip: 172.22.20.117
 
 # User defined Networking Hosts, this should be a required group
 network_hosts:
   infra1:
     ip: 172.22.20.117
-  infra2:
-    ip: 172.22.20.118
 
 haproxy_hosts:
   infra1:
     ip: 172.22.20.117
-  infra2:
-    ip: 172.22.20.118

@@ -14,7 +14,7 @@
    - python-pymongo
    
 - name: Clone RPC repository
-  command: chdir=/opt git clone -b 14.0.2 https://github.com/openstack/openstack-ansible.git
+  command: chdir=/opt git clone -b 14.0.0 https://github.com/openstack/openstack-ansible.git
   ignore_errors: yes
 
 - name: Download pip repo
