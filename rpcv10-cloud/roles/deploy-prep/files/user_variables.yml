@@ -25,7 +25,7 @@ neutron_plugin_base:
 
 ## Ceilometer Options
 ceilometer_db_type: mongodb
-ceilometer_db_ip: 172.22.0.117
+ceilometer_db_ip: 172.22.40.116
 ceilometer_db_port: 27017
 
 ## Common Override to enable Ceilometer for each service.
@@ -40,7 +40,7 @@ keystone_ceilometer_enabled: True
 
 ## Common Aodh Overrides
 aodh_db_type: mongodb
-aodh_db_ip: 172.22.0.117
+aodh_db_ip: 172.22.40.116
 aodh_db_port: 27017
 
 ## Glance Options
@@ -194,7 +194,7 @@ haproxy_keepalived_internal_interface: br-mgmt
 # haproxy_keepalived_priority_backup:
 
 # Keepalived default IP address used to check its alive status (IPv4 only)
-keepalived_ping_address: "172.22.20.117"
+keepalived_ping_address: "172.22.20.116"
 
 # All the previous variables are used in a var file, fed to the keepalived role.
 # To use another file to feed the role, override the following var:

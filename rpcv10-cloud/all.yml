@@ -4,6 +4,6 @@
 - include: compute_update.yml
 - include: cinder_update.yml
 #- include: custom-osic-kernel.yml
-#- include: access.yml
+- include: access.yml
 - include: infra_lxc.yml
 #- include: network_update.yml

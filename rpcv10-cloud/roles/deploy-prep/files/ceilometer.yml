@@ -1,15 +1,21 @@
 # The compute host that the ceilometer compute agent will be running on.
 metering-compute_hosts:
   compute1:
-    ip: 172.22.20.122
+    ip: 172.22.20.119
   compute2:
-    ip: 172.22.20.123
+    ip: 172.22.20.120
   compute3:
+    ip: 172.22.20.121
+  compute4:
+    ip: 172.22.20.123
+  compute5:
     ip: 172.22.20.124
 
 # The infra nodes that the central agents will be running on
 metering-infra_hosts:
   infra1:
-    ip: 172.22.20.117
+    ip: 172.22.20.116
   infra2:
+    ip: 172.22.20.117
+  infra3:
     ip: 172.22.20.118

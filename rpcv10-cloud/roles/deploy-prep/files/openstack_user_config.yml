@@ -10,8 +10,8 @@ used_ips:
   - 172.22.24.1,172.22.24.130
 
 global_overrides:
-  internal_lb_vip_address: 172.22.20.117
-  external_lb_vip_address: 172.22.20.117
+  internal_lb_vip_address: 172.22.20.116
+  external_lb_vip_address: 172.22.40.116
   tunnel_bridge: "br-vxlan"
   management_bridge: "br-mgmt"
   provider_networks:
@@ -61,34 +61,54 @@ global_overrides:
 # Shared infrastructure parts
 shared-infra_hosts:
   infra1:
+    ip: 172.22.20.116
+  infra2:
     ip: 172.22.20.117
+  infra3:
+    ip: 172.22.20.118
 
 # OpenStack Compute infrastructure parts
 os-infra_hosts:
   infra1:
+    ip: 172.22.20.116
+  infra2:
     ip: 172.22.20.117
+  infra3:
+    ip: 172.22.20.118
 
 # OpenStack Compute infrastructure parts
 storage-infra_hosts:
   infra1:
+    ip: 172.22.20.116
+  infra2:
     ip: 172.22.20.117
+  infra3:
+    ip: 172.22.20.118
 
 repo-infra_hosts:
   infra1:
-    ip: 172.22.20.117
+    ip: 172.22.20.116
 
 # Keystone Identity infrastructure parts
 identity_hosts:
   infra1:
+    ip: 172.22.20.116
+  infra2:
     ip: 172.22.20.117
+  infra3:
+    ip: 172.22.20.118
 
 # User defined Compute Hosts, this should be a required group
 compute_hosts:
   compute1:
-    ip: 172.22.20.122
+    ip: 172.22.20.119
   compute2:
-    ip: 172.22.20.123
+    ip: 172.22.20.120
   compute3:
+    ip: 172.22.20.121
+  compute4:
+    ip: 172.22.20.123
+  compute5:
     ip: 172.22.20.124
     
 # User defined Storage Hosts, this should be a required group
@@ -104,17 +124,36 @@ storage_hosts:
           volume_group: lxc
           volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
           volume_backend_name: LVM_iSCSI
+  cinder2:
+    ip: 172.22.20.126
+    container_vars:
+      cinder_storage_availability_zone: cinderAZ_1
+      cinder_default_availability_zone: cinderAZ_1
+      cinder_backends:
+        limit_container_types: cinder_volume
+        lvm:
+          volume_group: lxc
+          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
+          volume_backend_name: LVM_iSCSI
 
 # User defined Logging Hosts, this should be a required group
 log_hosts:
   infra1:
-    ip: 172.22.20.117
+    ip: 172.22.20.116
 
 # User defined Networking Hosts, this should be a required group
 network_hosts:
   infra1:
+    ip: 172.22.20.116
+  infra2:
     ip: 172.22.20.117
+  infra3:
+    ip: 172.22.20.118
 
 haproxy_hosts:
   infra1:
+    ip: 172.22.20.116
+  infra2:
     ip: 172.22.20.117
+  infra3:
+    ip: 172.22.20.118

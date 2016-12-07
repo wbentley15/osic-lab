@@ -1,5 +1,7 @@
 metering-alarm_hosts:
   infra1:
-    ip: 172.22.20.117
+    ip: 172.22.20.116
   infra2:
+    ip: 172.22.20.117
+  infra3:
     ip: 172.22.20.118
